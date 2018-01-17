@@ -29,3 +29,6 @@ function mudaLayout(){
 
 btn.addEventListener('click', mudaLayout)
 
+// Progressive enhancement == Carregamento Progressivo (oferecer quando tem disponível)
+btn.classList.remove('no-js')
+
