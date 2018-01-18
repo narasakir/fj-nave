@@ -18,7 +18,7 @@
                 cartao.style.background = novaCor 
         })
         // Delegate para trocar a cor ao teclar
-        cartao.addEventListener('keydown', function(event){
+        cartao.addEventListener('keyup', function(event){
             const  $elementoAtual = event.target // Pega os eventos do elemento atual
             const isLabel = $elementoAtual.classList.contains('opcoesDoCartao-opcao') // verifica se o elemento atual contem a classe 
             if(isLabel && (event.key === 'Enter' || event.key === ' ')){ // verifica se é o elemento e o evento desejado.
@@ -30,9 +30,8 @@
             const $elementoAtual = event.target
             const isRemove = $elementoAtual.classList.contains('opcoesDoCartao-remove')
 
-            const cartao = $elementoAtual.parentNode.parentNode
-            cartao.classList.add('cartao--somePeixinho')
             if(isRemove){
+                cartao.classList.add('cartao--somePeixinho')
                 cartao.addEventListener('transitionend', function(){
                     cartao.remove();
                 })         
