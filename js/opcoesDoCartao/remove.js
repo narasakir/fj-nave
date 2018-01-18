@@ -8,7 +8,7 @@
                 // o "this" é um elemento triste, porque ele assume um contexto em cada lugar.
 
                 btn.addEventListener('click', function(){
-                    const cartao = btns[i].parentNode.parentNode
+                    const cartao = btn.parentNode.parentNode
                     cartao.classList.add('cartao--somePeixinho')
                     cartao.addEventListener('transitionend', function(){
                         cartao.remove();
