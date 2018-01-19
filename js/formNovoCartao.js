@@ -9,9 +9,13 @@
         const $conteudo = campoDeConteudo.value.trim()
 
         if($conteudo === ''){            
-            const $msgErro = document.createElement('div')
-            $msgErro.classList.add('formNovoCartao-msg')
-            $msgErro.textContent = 'Nada de Nadas'
+            const $tplErro =document.createElement('tpl')
+            $tplErro.innerHTML = `
+                <div class="formNovoCartao-msg">
+                    Elemento vazio
+                </div>
+            `
+            $msgErro = $tplErro.querySelector('.formNovoCartao-msg')
             document.querySelector('.formNovoCartao-salvar')
                     .insertAdjacentElement('beforebegin', $msgErro)
 
@@ -20,8 +24,9 @@
             })
         }else{
             contador++
-            const $tpl = document.createElement('tpl')
-            $tpl.innerHTML = `
+            const $tpl = document.createElement('tpl') // Criando o elemento como uma template string
+            //Adicionando o conteudo e deixando dinamico
+            $tpl.innerHTML = ` 
                     <article id="cartao_${contador}" class="cartao" tabindex="0">
                     <div class="opcoesDoCartao">
                     <button class="opcoesDoCartao-remove opcoesDoCartao-opcao" tabindex="0">
@@ -52,8 +57,8 @@
                 </article>
             
             `
-            const $cartao = $tpl.querySelector('.cartao')
-            document.querySelector('.mural').insertAdjacentElement('afterbegin', $cartao)
+            const $cartao = $tpl.querySelector('.cartao') // Retirei o article dentro da tag tpl
+            document.querySelector('.mural').insertAdjacentElement('afterbegin', $cartao) // Adicionando dentro do mural
         }
 
     })
