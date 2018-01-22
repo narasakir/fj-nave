@@ -2,7 +2,7 @@
     let contador = document.querySelectorAll('.cartao').length
 
 
-function criarCartao(conteudo, cor = '#EBEF40'){
+function criarCartao({conteudo, cor}){ //Recebendo os parametros como objeto
     contador++
     //Adicionando o conteudo e deixando dinamico com jQuery
     const $cartao = $(` 
