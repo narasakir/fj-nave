@@ -14,8 +14,6 @@
             ajudas.forEach(ajuda => criarCartao(ajuda)) // Arrow function é uma função usado quando não preciso do (this) 
 
         })
-
-
     })
     $btnAjuda.classList.remove('no-js') // Progressive enhancement - disponibiliza o componente na view depois de carregar a funcionalidade
 })()

@@ -1,8 +1,10 @@
 ;(function($){ // Parametro para usar as Dependencias
     let contador = document.querySelectorAll('.cartao').length
-
+    const listaCartoes = []
 
 function criarCartao({conteudo, cor}){ //Recebendo os parametros como objeto
+
+    listaCartoes.push({conteudo, cor})
     contador++
     //Adicionando o conteudo e deixando dinamico com jQuery
     const $cartao = $(` 
@@ -70,5 +72,20 @@ function criarCartao({conteudo, cor}){ //Recebendo os parametros como objeto
     })
     $('.mural').prepend($cartao) // Adicionando dentro do mural
 }
+
+$.ajax({
+    url: "http://ceep.herokuapp.com/cartoes/carregar/",
+    method: "GET",
+    dataType: "jsonp",
+    data: {
+        usuario: "narasaki"
+    }, 
+    success: function(resposta){
+        const ajudas = resposta.cartoes 
+        ajudas.forEach(ajuda => criarCartao(ajuda))
+    }
+})
+
+window.listaCartoes = listaCartoes
 window.criarCartao = criarCartao
 })(jQuery) //Dependencia == Declarando que o arquivo depende do jQuery

@@ -2,6 +2,9 @@
     const $btn = $("#btnSync")
 
     $btn.click(function(){
+        
+        $btn.addClass("botaoSync--esperando")
+
         const xhr = new XMLHttpRequest()
         xhr.open("POST", "http://ceep.herokuapp.com/cartoes/salvar")
     
@@ -9,20 +12,21 @@
     
         const objeto = {
             usuario: "narasaki",
-            cartoes: [
-                {conteudo: "amsdk", cor: "#777"}, 
-                {conteudo: "asasdada", cor:"#dcd"}
-            ]
+            cartoes: listaCartoes
         }
     
         xhr.send(JSON.stringify(objeto)) // Convertendo o objeto para uma string com o JSON
     
         xhr.addEventListener("load", function(){
+            $btn.removeClass("botaoSync--esperando")
+            $btn.removeClass("botaoSync--deuRuim")
             $btn.addClass("botaoSync--sincronizado")
         })
     
-        xhr.addEventListener("error", function(){
-            $btn.addClass("btnSync--deuRuim")
+        xhr.addEventListener("error", function(){            
+            $btn.removeClass("botaoSync--esperando")
+            $btn.removeClass("botaoSync--sincronizado")            
+            $btn.addClass("botaoSync--deuRuim")
         })
     })
 
