@@ -21,7 +21,7 @@
                 $msgErro.remove()
             })
         }else{
-            criarCartao($conteudo)
+            criarCartao({conteudo : $conteudo})
         }
 
     })
